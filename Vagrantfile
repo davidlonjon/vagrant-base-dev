@@ -34,7 +34,6 @@ def set_default_fallback_settings()
   default_settings[:box_name] = 'trusty-server-cloudimg-i386-vagrant-disk1'
   default_settings[:box_url] = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box'
   default_settings[:ip] = '10.10.10.100'
-  default_settings[:hostname] = 'local.dev'
   default_settings[:forward_agent] = true
   default_settings[:forwards] = Hash.new
   default_settings[:forwards][:http] = Hash.new
@@ -93,15 +92,6 @@ def set_fallback_default_salt_pillar_settings(settings)
   server_admin: 'admin@" + settings[:hostname]+ "'
   allow_from: '" + settings[:ip][ 0..settings[:ip].rindex(/\./)] +  "0/24'
   logs_dir: '" + settings[:share_folders][:logs][:guest_path] + "/apache2/phpmyadmin'
-
-# tools_vhost:
-#   server_name: 'tools.local.dev'
-#   doc_root:  '" + settings[:share_folders][:www][:guest_path] + "/tools.local.dev'
-#   server_admin: 'admin." + settings[:hostname]+ "'
-#   allow_override: 'All'
-#   allow_from: 'all'
-#   allow_status: 'granted'
-#   logs_dir: '" + settings[:share_folders][:logs][:guest_path] + "/apache2/tools.local.dev'
 
 mysql_server:
   root_username: 'root'

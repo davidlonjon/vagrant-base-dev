@@ -2,16 +2,7 @@ phpmyadmin:
   server_name: 'phpmyadmin.local.dev'
   server_admin: 'admin@local.dev'
   allow_from: '10.10.10.0/24'
-  logs_dir: '/srv/logs/apache2/phpmyadmin'
-
-# tools_vhost:
-#   server_name: 'tools.local.dev'
-#   doc_root:  '/srv/tools.local.dev'
-#   server_admin: 'admin@local.dev'
-#   allow_override: 'All'
-#   allow_from: 'all'
-#   allow_status: 'granted'
-#   logs_dir: '/srv/logs/apache2/tools.local.dev'
+  logs_dir: '/srv/logs/apache2'
 
 mysql_server:
   root_username: 'root'

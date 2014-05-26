@@ -16,4 +16,4 @@ include:
   - states.tools.python_livereload
   - states.tools.python_fabric
   - states.tools.wp_cli
-  # - states.setup.virtualhosts
+  - states.setup
