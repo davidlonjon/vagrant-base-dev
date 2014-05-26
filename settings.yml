@@ -13,6 +13,9 @@ forwards:
   jekyll:
     from: 4000
     to: 4000
+  expressjs:
+    from: 3000
+    to: 3000
   api:
     from: 9090
     to: 9090

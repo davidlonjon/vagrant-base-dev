@@ -42,9 +42,12 @@ def set_default_fallback_settings()
   default_settings[:forwards][:nginx] = Hash.new
   default_settings[:forwards][:nginx][:from] = 8080
   default_settings[:forwards][:nginx][:to] = 8080
-  default_settings[:forwards][:api] = Hash.new
-  default_settings[:forwards][:api][:from] =4000
-  default_settings[:forwards][:api][:to] = 4000
+  default_settings[:forwards][:jekyll] = Hash.new
+  default_settings[:forwards][:jekyll][:from] =4000
+  default_settings[:forwards][:jekyll][:to] = 4000
+  default_settings[:forwards][:expressjs] = Hash.new
+  default_settings[:forwards][:expressjs][:from] =3000
+  default_settings[:forwards][:expressjs][:to] = 3000
   default_settings[:forwards][:api] = Hash.new
   default_settings[:forwards][:api][:from] =9090
   default_settings[:forwards][:api][:to] = 9090
