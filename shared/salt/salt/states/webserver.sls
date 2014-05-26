@@ -14,6 +14,7 @@ include:
   - states.tools.jekyll
   - states.tools.yeoman_grunt_bower
   - states.tools.jasmine
+  - states.tools.mocha
   - states.tools.python_livereload
   - states.tools.python_fabric
   - states.tools.wp_cli
