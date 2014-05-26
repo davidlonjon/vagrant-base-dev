@@ -22,7 +22,7 @@ include:
   - states.core.pkgs.virtualenvwrapper
   - states.core.pkgs.nodejs
   # - states.core.pkgs.npm
-  - states.core.pkgs.rvm
   - states.core.pkgs.ruby
+  - states.core.pkgs.rvm
   - states.core.locale
   - states.core.pkgs.zsh

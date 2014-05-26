@@ -1,6 +1,7 @@
 include:
   - states.www.apache2
   - states.lang.php5
+  - states.lang.rails
   - states.dbs.mysql.mysqlclient
   - states.caches.memcached
   - states.caches.apc
