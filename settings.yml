@@ -11,6 +11,9 @@ forwards:
   nginx:
     from: 8080
     to: 8080
+  jekyll:
+    from: 4000
+    to: 4000
   api:
     from: 9090
     to: 9090

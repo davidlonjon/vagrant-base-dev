@@ -11,6 +11,7 @@ include:
   - states.tools.phpqatools
   - states.tools.compass
   - states.tools.capistrano
+  - states.tools.jekyll
   - states.tools.yeoman_grunt_bower
   - states.tools.python_livereload
   - states.tools.python_fabric
