@@ -1,0 +1,3 @@
+ngrep:
+  pkg:
+    - installed

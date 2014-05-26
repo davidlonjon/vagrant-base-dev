@@ -6,6 +6,7 @@ include:
   - states.core.pkgs.htop
   - states.core.pkgs.mytop
   - states.core.pkgs.nmon
+  - states.core.pkgs.ngrep
   - states.core.pkgs.perl
   - states.core.pkgs.perllibs
   - states.core.pkgs.screen
