@@ -16,6 +16,7 @@ include:
   - states.tools.jasmine
   - states.tools.mocha
   - states.tools.karma
+  - states.tools.gulp
   - states.tools.python_livereload
   - states.tools.python_fabric
   - states.tools.wp_cli
