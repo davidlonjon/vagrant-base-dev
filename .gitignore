@@ -1,0 +1,31 @@
+# Ignore OSX files
+.DS_Store
+._.DS_Store
+dump.rdb
+
+# Ignore Sass file
+.sass-cache/*
+
+# Ignore vagrant files
+/.vagrant
+
+# Ignore sublime project files
+sublime
+*.sublime*
+
+# Ignore web files
+shared/www/*
+!shared/www/README.md
+
+# Ignore dbs files
+shared/dbs/*
+!shared/dbs/README.md
+
+# Ignore logs files
+shared/logs/*
+!shared/logs/README.md
+*.log
+
+# Ignore config files
+shared/config/*
+!shared/config/README.md
