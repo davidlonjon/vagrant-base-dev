@@ -10,6 +10,9 @@ mysql_server:
   bind_address: '127.0.0.1'
   version: '5.5'
 
+nginx:
+  port: 8080
+
 php:
   php_upload_max_filesize: '200M'
 

@@ -1,6 +1,7 @@
 include:
   - states.www.apache2
   - states.www.expressjs
+  - states.www.nginx
   - states.lang.php5
   - states.lang.rails
   - states.dbs.mysql.mysqlclient
