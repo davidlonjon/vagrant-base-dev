@@ -4,6 +4,7 @@ include:
   - states.www.nginx
   - states.lang.php5
   - states.lang.rails
+  - states.lang.go
   - states.dbs.mysql.mysqlclient
   - states.caches.memcached
   - states.caches.apc
