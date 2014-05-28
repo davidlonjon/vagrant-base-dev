@@ -45,6 +45,9 @@ def set_default_fallback_settings()
   default_settings[:forwards][:jekyll] = Hash.new
   default_settings[:forwards][:jekyll][:from] =4000
   default_settings[:forwards][:jekyll][:to] = 4000
+  default_settings[:forwards][:middleman] = Hash.new
+  default_settings[:forwards][:middleman][:from] =4567
+  default_settings[:forwards][:middleman][:to] = 4567
   default_settings[:forwards][:expressjs] = Hash.new
   default_settings[:forwards][:expressjs][:from] =3000
   default_settings[:forwards][:expressjs][:to] = 3000

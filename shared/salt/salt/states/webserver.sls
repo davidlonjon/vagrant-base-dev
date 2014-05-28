@@ -14,6 +14,7 @@ include:
   - states.tools.jasmine
   - states.tools.jekyll
   - states.tools.karma
+  - states.tools.middleman
   - states.tools.mocha
   - states.tools.phpmyadmin
   - states.tools.phppgadmin

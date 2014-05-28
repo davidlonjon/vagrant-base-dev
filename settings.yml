@@ -13,6 +13,9 @@ forwards:
   jekyll:
     from: 4000
     to: 4000
+  middleman:
+    from: 4567
+    to: 4567
   expressjs:
     from: 3000
     to: 3000
