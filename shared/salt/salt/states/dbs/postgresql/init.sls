@@ -53,3 +53,29 @@ manage_postgresql_conf:
         - pkg: postgresql
     - watch_in:
       - service: postgresql
+
+set_postgres_root_user:
+  postgres_user.present:
+    - name: {{ 'root' if pillar['postgresql']['root_username'] is not defined else pillar['postgresql']['root_username'] }}
+    - password: {{ 'root' if pillar['postgresql']['root_password'] is not defined else pillar['postgresql']['root_password'] }}
+    - login: true
+    - superuser: true
+    - createroles: true
+    - createdb: true
+    - createuser: true
+    - runas: postgres
+    - require:
+      - service: postgresql
+
+set_test_postgres_db:
+  postgres_database.present:
+    - name: {{ 'test' if pillar['postgresql']['test_db_name'] is not defined else pillar['postgresql']['test_db_name'] }}
+    - encoding: UTF8
+    - lc_ctype: en_US.UTF8
+    - lc_collate: en_US.UTF8
+    - template: template0
+    - owner: {{ 'root' if pillar['postgresql']['root_username'] is not defined else pillar['postgresql']['root_username'] }}
+    - runas: postgres
+    - require:
+      - postgres_user: set_postgres_root_user
+      - service: postgresql

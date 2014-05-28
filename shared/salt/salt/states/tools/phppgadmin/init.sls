@@ -33,3 +33,15 @@ enable_phppgadmin_vhost:
       - file: set_phppgadmin_vhost_file
     - watch_in:
       - service: apache2
+
+set_phppgadmin_config_file:
+  file:
+    - managed
+    - source: salt://states/tools/phppgadmin/etc/phppgadmin/config.inc.php
+    - name: /etc/phppgadmin/config.inc.php
+    - user: root
+    - group: root
+    - template: jinja
+    - mode: 644
+    - require:
+      - pkg: phppgadmin

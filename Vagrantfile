@@ -106,6 +106,9 @@ mysql_server:
   version: '5.5'
 
 postgresql:
+  root_username: 'root'
+  root_password: 'root'
+  test_db_name: 'test'
   bind_address: '10.10.10.0/24'
 
 nginx:
