@@ -1,8 +1,3 @@
-# This include and extend statement below should only exists if
-# using apache
-include:
-  - states.www.apache2
-
 phpmyadmin:
   pkg:
     - installed
@@ -10,13 +5,6 @@ phpmyadmin:
     - require:
       - pkg: php5
       - pkg: apache2
-
-/srv/logs/apache2/phpmyadmin:
-  file.directory:
-  - dir_mode: 755
-  - file_mode: 644
-  - recurse:
-      - mode
 
 phpmyadmin_apache:
   file:
@@ -43,11 +31,5 @@ phpmyadmin_apache-enable:
     - target: /etc/apache2/sites-available/phpmyadmin.local.dev
     - require:
       - file: phpmyadmin_apache
-
-extend:
-  apache2:
-    service:
-      - running
-      - watch:
-        - file: /etc/apache2/sites-enabled/phpmyadmin.local.dev
-        - pkg: phpmyadmin
+    - watch_in:
+      - service: apache2
