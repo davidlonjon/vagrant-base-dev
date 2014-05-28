@@ -10,6 +10,7 @@ include:
   - states.tools.composer
   - states.tools.compass
   - states.tools.forever
+  - states.tools.forge
   - states.tools.gulp
   - states.tools.jasmine
   - states.tools.jekyll
