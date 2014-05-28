@@ -73,7 +73,7 @@ def set_default_fallback_settings()
   default_settings[:share_folders][:shared][:create] = true
   default_settings[:share_folders][:shared][:type] = 'nfs'
   default_settings[:use_hostupdater] = false
-  default_settings[:hostupdater_aliases] = 'www.local.dev,tools.local.dev,mysql.local.dev,phpmyadmin.local.dev'
+  default_settings[:hostupdater_aliases] = 'www.local.dev,tools.local.dev,mysql.local.dev,phpmyadmin.local.dev,phppgadmin.local.dev'
   default_settings[:hostupdater_remove_on_suspend] = true
   default_settings[:use_cashier] = false
   default_settings[:use_salt_provisioner] = true

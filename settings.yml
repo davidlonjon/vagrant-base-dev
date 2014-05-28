@@ -41,7 +41,7 @@ share_folders:
     create: true
     type: 'nfs'
 use_hostupdater: false
-hostupdater_aliases: 'www.local.dev,tools.local.dev,mysql.local.dev,phpmyadmin.local.dev'
+hostupdater_aliases: 'www.local.dev,tools.local.dev,mysql.local.dev,phpmyadmin.local.dev,phppgadmin.local.dev'
 hostupdater_remove_on_suspend: true
 use_cashier: false
 use_salt_provisioner: true
@@ -63,6 +63,12 @@ phpmyadmin:
   allow_from: '10.10.10.0/24'
   logs_dir: '/srv/logs/apache2'
 
+phppgadmin:
+  server_name: 'phppgadmin.local.dev'
+  server_admin: 'admin@local.dev'
+  allow_from: '10.10.10.0/24'
+  logs_dir: '/srv/logs/apache2'
+
 mysql_server:
   root_username: 'root'
   root_password: 'root'
@@ -70,7 +76,6 @@ mysql_server:
   version: '5.5'
 
 postgresql:
-  listen_address: '*'
   bind_address: '10.10.10.0/24'
 
 nginx:

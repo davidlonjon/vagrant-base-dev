@@ -9,6 +9,7 @@ include:
   - states.caches.memcached
   - states.caches.apc
   - states.tools.phpmyadmin
+  - states.tools.phppgadmin
   - states.tools.webgrind
   - states.tools.composer
   - states.tools.phpqatools

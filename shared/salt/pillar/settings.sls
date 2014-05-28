@@ -4,6 +4,12 @@ phpmyadmin:
   allow_from: '10.10.10.0/24'
   logs_dir: '/srv/logs/apache2'
 
+phppgadmin:
+  server_name: 'phppgadmin.local.dev'
+  server_admin: 'admin@local.dev'
+  allow_from: '10.10.10.0/24'
+  logs_dir: '/srv/logs/apache2'
+
 mysql_server:
   root_username: 'root'
   root_password: 'root'
@@ -11,7 +17,6 @@ mysql_server:
   version: '5.5'
 
 postgresql:
-  listen_address: '*'
   bind_address: '10.10.10.0/24'
 
 nginx:
