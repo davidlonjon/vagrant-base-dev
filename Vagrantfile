@@ -54,6 +54,9 @@ def set_default_fallback_settings()
   default_settings[:forwards][:mysql] = Hash.new
   default_settings[:forwards][:mysql][:from] = 3306
   default_settings[:forwards][:mysql][:to] = 3306
+  default_settings[:forwards][:postgresql] = Hash.new
+  default_settings[:forwards][:postgresql][:from] = 5432
+  default_settings[:forwards][:postgresql][:to] = 5432
   default_settings[:forwards][:xdebug] = Hash.new
   default_settings[:forwards][:xdebug][:from] = 9000
   default_settings[:forwards][:xdebug][:to] = 9000
@@ -101,6 +104,9 @@ mysql_server:
   root_password: 'root'
   bind_address: '127.0.0.1'
   version: '5.5'
+
+postgresql:
+  bind_address: '10.10.10.0/24'
 
 nginx:
   port: 8080

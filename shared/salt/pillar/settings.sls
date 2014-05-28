@@ -10,6 +10,10 @@ mysql_server:
   bind_address: '127.0.0.1'
   version: '5.5'
 
+postgresql:
+  listen_address: '*'
+  bind_address: '10.10.10.0/24'
+
 nginx:
   port: 8080
 
