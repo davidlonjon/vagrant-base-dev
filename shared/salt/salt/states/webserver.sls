@@ -1,28 +1,28 @@
 include:
-  - states.www.apache2
-  - states.www.expressjs
-  - states.www.nginx
+  - states.caches.memcached
+  - states.caches.apc
+  - states.dbs.mysql.mysqlclient
   - states.lang.php5
   - states.lang.rails
   - states.lang.go
-  - states.dbs.mysql.mysqlclient
-  - states.caches.memcached
-  - states.caches.apc
+  - states.setup
+  - states.tools.capistrano
+  - states.tools.composer
+  - states.tools.compass
+  - states.tools.forever
+  - states.tools.gulp
+  - states.tools.jasmine
+  - states.tools.jekyll
+  - states.tools.karma
+  - states.tools.mocha
   - states.tools.phpmyadmin
   - states.tools.phppgadmin
-  - states.tools.webgrind
-  - states.tools.composer
   - states.tools.phpqatools
-  - states.tools.compass
-  - states.tools.capistrano
-  - states.tools.jekyll
-  - states.tools.yeoman_grunt_bower
-  - states.tools.jasmine
-  - states.tools.mocha
-  - states.tools.karma
-  - states.tools.gulp
-  - states.tools.forever
-  - states.tools.python_livereload
   - states.tools.python_fabric
+  - states.tools.python_livereload
+  - states.tools.webgrind
   - states.tools.wp_cli
-  - states.setup
+  - states.tools.yeoman_grunt_bower
+  - states.www.apache2
+  - states.www.expressjs
+  - states.www.nginx
