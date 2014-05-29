@@ -18,6 +18,7 @@ include:
   - states.tools.karma
   - states.tools.middleman
   - states.tools.mocha
+  - states.tools.ngrok
   - states.tools.phpmyadmin
   - states.tools.phppgadmin
   - states.tools.phpqatools
