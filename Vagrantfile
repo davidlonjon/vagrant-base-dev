@@ -48,6 +48,9 @@ def set_default_fallback_settings()
   default_settings[:forwards][:middleman] = Hash.new
   default_settings[:forwards][:middleman][:from] =4567
   default_settings[:forwards][:middleman][:to] = 4567
+  default_settings[:forwards][:redmon] = Hash.new
+  default_settings[:forwards][:redmon][:from] =4568
+  default_settings[:forwards][:redmon][:to] = 4568
   default_settings[:forwards][:expressjs] = Hash.new
   default_settings[:forwards][:expressjs][:from] =3000
   default_settings[:forwards][:expressjs][:to] = 3000

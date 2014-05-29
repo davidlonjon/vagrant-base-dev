@@ -23,6 +23,7 @@ include:
   - states.tools.phpqatools
   - states.tools.python_fabric
   - states.tools.python_livereload
+  - states.tools.redmon
   - states.tools.webgrind
   - states.tools.wp_cli
   - states.tools.yeoman_grunt_bower

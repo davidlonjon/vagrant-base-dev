@@ -16,6 +16,9 @@ forwards:
   middleman:
     from: 4567
     to: 4567
+  redmon:
+    from: 4568
+    to: 4568
   expressjs:
     from: 3000
     to: 3000
