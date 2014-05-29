@@ -1,13 +1,11 @@
-include:
-  - states.www.apache2
-
-php-apc:
+install_php_apc:
   pkg:
     - installed
-  require:
-    - pkg: setup_php5
+    - name: php-apc
+    - require:
+      - pkg: setup_php5
 
-apc.ini:
+set_apc_ini:
   file:
     - managed
     - source: salt://states/caches/apc/etc/php5/conf.d/apc.ini
@@ -19,12 +17,6 @@ apc.ini:
     - defaults:
        memory: {{ '32'  if pillar['apc']['memory'] is not defined else pillar['apc']['memory'] }}
     - require:
-      - pkg: php-apc
-
-extend:
-  apache2:
-    service:
-      - running
-      - watch:
-        - pkg: php-apc
-        - file: apc.ini
+      - pkg: install_php_apc
+    - watch_in:
+      - service: apache2
