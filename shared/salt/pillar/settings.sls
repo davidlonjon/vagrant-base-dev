@@ -33,6 +33,11 @@ memcached:
   host: '127.0.0.1'
   port: 11211
 
+redis:
+  host: '127.0.0.1'
+  port: 6379
+  logs_dir: '/srv/logs/redis'
+
 apc:
   memory: 64
 

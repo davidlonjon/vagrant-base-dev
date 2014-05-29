@@ -69,6 +69,9 @@ def set_default_fallback_settings()
   default_settings[:forwards][:memcached] = Hash.new
   default_settings[:forwards][:memcached][:from] = 12111
   default_settings[:forwards][:memcached][:to] = 12111
+  default_settings[:forwards][:redis] = Hash.new
+  default_settings[:forwards][:redis][:from] = 6379
+  default_settings[:forwards][:redis][:to] = 6379
   default_settings[:share_folders] = Hash.new
   default_settings[:share_folders][:shared] = Hash.new
   default_settings[:share_folders][:shared][:host_path] = 'shared/'
@@ -124,6 +127,10 @@ memcached:
   memory: 128
   host: '127.0.0.1'
   port: " + settings[:forwards][:memcached][:from].to_s + "
+
+redis:
+  host: '127.0.0.1'
+  port: " + settings[:forwards][:redis][:from].to_s + "
 
 apc:
   memory: 64

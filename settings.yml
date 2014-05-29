@@ -37,6 +37,9 @@ forwards:
   memcached:
     from: 11211
     to: 11211
+  redis:
+    from: 6379
+    to: 6379
 share_folders:
   shared:
     host_path: 'shared/'
@@ -94,6 +97,11 @@ memcached:
   memory: 128
   host: '127.0.0.1'
   port: 11211
+
+redis:
+  host: '127.0.0.1'
+  port: 6379
+  logs_dir: '/srv/logs/redis'
 
 apc:
   memory: 64
