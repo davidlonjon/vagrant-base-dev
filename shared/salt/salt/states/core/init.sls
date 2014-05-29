@@ -1,5 +1,6 @@
 include:
   - states.core.locale
+  - states.core.pkgs.ack_grep
   - states.core.pkgs.build-essential
   - states.core.pkgs.curl
   # - states.core.pkgs.docker
