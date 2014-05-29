@@ -1,7 +1,4 @@
-include:
-  - states.www.apache2
-
-php5:
+setup_php5:
   pkg:
   - installed
   - pkgs:
@@ -19,9 +16,8 @@ php5:
     - imagemagick
   - require:
     - pkg: apache2
-    - pkg: mysql-server
 
-xdebug.ini:
+set_xdebug_ini:
   file:
     - managed
     - source: salt://states/lang/php5/etc/php5/conf.d/xdebug.ini
@@ -29,7 +25,7 @@ xdebug.ini:
     - template: jinja
     - mode: 644
     - require:
-      - pkg: php5
+      - pkg: setup_php5
     - watch_in:
       - service: apache2
 
@@ -42,13 +38,16 @@ enable_php5_mcrypt:
     - watch_in:
       - service: apache2
 
-/etc/php5/apache2/php.ini:
+set_php_ini:
   file:
     - managed
     - source: salt://states/lang/php5/etc/php5/apache2/php.ini
+    - name: /etc/php5/apache2/php.ini
     - template: jinja
     - mode: 644
     - require:
-        - pkg: php5
+        - pkg: setup_php5
     - defaults:
         php_upload_max_filesize: {{ "2M" if pillar["php"]["php_upload_max_filesize"] is not defined else pillar["php"]["php_upload_max_filesize"] }}
+    - watch_in:
+      -service: apache2

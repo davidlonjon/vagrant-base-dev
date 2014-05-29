@@ -5,7 +5,7 @@ php-apc:
   pkg:
     - installed
   require:
-    - pkg: php5
+    - pkg: setup_php5
 
 apc.ini:
   file:

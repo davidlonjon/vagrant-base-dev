@@ -6,7 +6,7 @@ install_wp_cli:
     - unless: test -f /usr/local/bin/wp
     - require:
         - pkg: curl
-        - pkg: php5
+        - pkg: setup_php5
 
 chmod_wp_cli:
   cmd:
