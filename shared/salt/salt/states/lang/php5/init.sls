@@ -15,6 +15,8 @@ php5:
     - php5-mcrypt
     - php5-intl
     - php5-xdebug
+    - php5-imagick
+    - imagemagick
   - require:
     - pkg: apache2
     - pkg: mysql-server
@@ -28,13 +30,8 @@ xdebug.ini:
     - mode: 644
     - require:
       - pkg: php5
-
-extend:
-  apache2:
-    service:
-      - running
-      - watch:
-        - file: xdebug.ini
+    - watch_in:
+      - service: apache2
 
 enable_php5_mcrypt:
   cmd:
