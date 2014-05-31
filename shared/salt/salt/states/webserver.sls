@@ -22,6 +22,7 @@ include:
   - states.tools.phpmyadmin
   - states.tools.phppgadmin
   - states.tools.phpqatools
+  - states.tools.pm2
   - states.tools.python_fabric
   - states.tools.python_livereload
   - states.tools.redmon
