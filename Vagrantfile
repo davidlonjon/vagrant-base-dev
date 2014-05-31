@@ -138,9 +138,11 @@ memcached:
   port: " + settings[:forwards][:memcached][:from].to_s + "
   logs_base_dir: '/srv/logs/memcached'
 
+# Configuration for /etc/redis/redis.conf file
 redis:
-  host: '127.0.0.1'
+  bind: '127.0.0.1'
   port: " + settings[:forwards][:redis][:from].to_s + "
+  logs_base_dir: '/srv/logs/redis'
 
 mongodb:
   bind_ip: '127.0.0.1'
