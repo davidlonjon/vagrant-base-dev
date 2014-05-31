@@ -136,6 +136,7 @@ memcached:
   memory: 128
   host: '127.0.0.1'
   port: " + settings[:forwards][:memcached][:from].to_s + "
+  logs_base_dir: '/srv/logs/memcached'
 
 redis:
   host: '127.0.0.1'
