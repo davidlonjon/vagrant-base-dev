@@ -6,8 +6,8 @@ memcached:
     - installed
     - name: memcached
   service:
-    - name: memcached
     - running
+    - name: memcached
   require:
     - pkg: build-essential
 
