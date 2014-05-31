@@ -38,6 +38,11 @@ redis:
   port: 6379
   logs_dir: '/srv/logs/redis'
 
+mongodb:
+  bind_ip: '127.0.0.1'
+  port: 27017
+  logs_base_dir: '/srv/logs/mongodb'
+
 apc:
   memory: 64
 

@@ -75,6 +75,12 @@ def set_default_fallback_settings()
   default_settings[:forwards][:redis] = Hash.new
   default_settings[:forwards][:redis][:from] = 6379
   default_settings[:forwards][:redis][:to] = 6379
+  default_settings[:forwards][:mongodb] = Hash.new
+  default_settings[:forwards][:mongodb][:from] = 27017
+  default_settings[:forwards][:mongodb][:to] = 27017
+  default_settings[:forwards][:mongodb_web_status] = Hash.new
+  default_settings[:forwards][:mongodb_web_status][:from] = 28017
+  default_settings[:forwards][:mongodb_web_status][:to] = 28017
   default_settings[:share_folders] = Hash.new
   default_settings[:share_folders][:shared] = Hash.new
   default_settings[:share_folders][:shared][:host_path] = 'shared/'
@@ -134,6 +140,11 @@ memcached:
 redis:
   host: '127.0.0.1'
   port: " + settings[:forwards][:redis][:from].to_s + "
+
+mongodb:
+  bind_ip: '127.0.0.1'
+  port: 27017
+  logs_base_dir: '/srv/logs/mongodb'
 
 apc:
   memory: 64

@@ -43,6 +43,12 @@ forwards:
   redis:
     from: 6379
     to: 6379
+  mongodb:
+    from: 27017
+    to: 27017
+  mongodb_web_status:
+    from: 28017
+    to: 28017
 share_folders:
   shared:
     host_path: 'shared/'
@@ -105,6 +111,11 @@ redis:
   host: '127.0.0.1'
   port: 6379
   logs_dir: '/srv/logs/redis'
+
+mongodb:
+  bind_ip: '127.0.0.1'
+  port: 27017
+  logs_base_dir: '/srv/logs/mongodb'
 
 apc:
   memory: 64
