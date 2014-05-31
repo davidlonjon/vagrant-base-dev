@@ -89,7 +89,7 @@ php5-memcached:
 /etc/php5/conf.d/memcached.ini:
   file:
     - managed
-    - source: salt://states/caches/memcached/etc/php5/conf.d/memcached.ini
+    - source: salt://states/lang/php5/etc/php5/conf.d/memcached.ini
     - name: /etc/php5/conf.d/memcached.ini
     - user: root
     - group: root
