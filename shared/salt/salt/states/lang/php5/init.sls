@@ -11,23 +11,10 @@ setup_php5:
     - php-pear
     - php5-mcrypt
     - php5-intl
-    - php5-xdebug
     - php5-imagick
     - imagemagick
   - require:
     - pkg: apache2
-
-set_xdebug_ini:
-  file:
-    - managed
-    - source: salt://states/lang/php5/etc/php5/conf.d/xdebug.ini
-    - name: /etc/php5/conf.d/xdebug.ini
-    - template: jinja
-    - mode: 644
-    - require:
-      - pkg: setup_php5
-    - watch_in:
-      - service: apache2
 
 enable_php5_mcrypt:
   cmd:
@@ -51,6 +38,29 @@ set_php_ini:
         php_upload_max_filesize: {{ "2M" if pillar["php"]["php_upload_max_filesize"] is not defined else pillar["php"]["php_upload_max_filesize"] }}
     - watch_in:
       -service: apache2
+
+# Setup xdebug module for php5
+php5-xdebug:
+  pkg:
+    - installed
+    - name: php5-xdebug
+    - require:
+      - pkg: setup_php5
+
+# Setup /etc/php5/conf.d/xdebug.ini used by php5
+/etc/php5/conf.d/xdebug.ini:
+  file:
+    - managed
+    - source: salt://states/lang/php5/etc/php5/conf.d/xdebug.ini
+    - name: /etc/php5/conf.d/xdebug.ini
+    - user: root
+    - group: root
+    - template: jinja
+    - mode: 644
+    - require:
+      - pkg: setup_php5
+    - watch_in:
+      - service: apache2
 
 # Setup apc module for php5
 php-apc:
