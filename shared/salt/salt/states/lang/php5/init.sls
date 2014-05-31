@@ -51,3 +51,28 @@ set_php_ini:
         php_upload_max_filesize: {{ "2M" if pillar["php"]["php_upload_max_filesize"] is not defined else pillar["php"]["php_upload_max_filesize"] }}
     - watch_in:
       -service: apache2
+
+# Setup memcached module for php5
+php5-memcached:
+  pkg:
+    - installed
+    - name: php5-memcached
+  require:
+    - pkg: memcached
+
+# Setup memcached.ini used by php5
+/etc/php5/conf.d/memcached.ini:
+  file:
+    - managed
+    - source: salt://states/caches/memcached/etc/php5/conf.d/memcached.ini
+    - name: /etc/php5/conf.d/memcached.ini
+    - user: root
+    - group: root
+    - template: jinja
+    - mode: 644
+    - require:
+      - pkg: memcached
+      - pkg: php5-memcached
+    - watch_in:
+      - service: apache2
+      - service: memcached

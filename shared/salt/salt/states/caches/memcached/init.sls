@@ -1,25 +1,22 @@
-include:
-  - states.www.apache2
+# Provision memcached (http://memcached.org/)
 
+# Install memcached from package and setup service
 memcached:
   pkg:
     - installed
-  require:
-    - pkg: build-essential
+    - name: memcached
   service:
     - name: memcached
     - running
-    - require:
-      - pkg: memcached
-    - watch:
-      - file: memcached.ini
-      - file: memcached.conf
+  require:
+    - pkg: build-essential
 
-memcached.conf:
+# Setup /etc/memcached.conf file
+/etc/memcached.conf:
   file:
     - managed
-    - source: salt://states/caches/memcached/etc/memcached.conf
     - name: /etc/memcached.conf
+    - source: salt://states/caches/memcached/etc/memcached.conf
     - user: root
     - group: root
     - template: jinja
@@ -30,29 +27,5 @@ memcached.conf:
        port: {{ "11211"  if pillar['memcached']['port'] is not defined else pillar['memcached']['port'] }}
     - require:
       - pkg: memcached
-
-php5-memcached:
-  pkg:
-    - installed
-  require:
-    - pkg: memcached
-
-memcached.ini:
-  file:
-    - managed
-    - source: salt://states/caches/memcached/etc/php5/conf.d/memcached.ini
-    - name: /etc/php5/conf.d/memcached.ini
-    - user: root
-    - group: root
-    - template: jinja
-    - mode: 644
-    - require:
-      - pkg: memcached
-      - pkg: php5-memcached
-
-extend:
-  apache2:
-    service:
-      - running
-      - watch:
-        - file: memcached.ini
+    - watch_in:
+      - service: memcached
