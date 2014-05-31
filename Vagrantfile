@@ -132,6 +132,7 @@ nginx:
 php:
   php_upload_max_filesize: '200M'
 
+# Configuration for /etc/memcached.conf file
 memcached:
   memory: 128
   host: '127.0.0.1'
