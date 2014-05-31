@@ -52,6 +52,31 @@ set_php_ini:
     - watch_in:
       -service: apache2
 
+# Setup apc module for php5
+php-apc:
+  pkg:
+    - installed
+    - name: php-apc
+    - require:
+      - pkg: setup_php5
+
+# Setup /etc/php5/conf.d/apc.ini used by php5
+/etc/php5/conf.d/apc.ini:
+  file:
+    - managed
+    - name: /etc/php5/conf.d/apc.ini
+    - source: salt://states/lang/php5/etc/php5/conf.d/apc.ini
+    - user: root
+    - group: root
+    - template: jinja
+    - mode: 644
+    - defaults:
+       shm_size: {{ '32M'  if pillar['apc']['shm_size'] is not defined else pillar['apc']['shm_size'] }}
+    - require:
+      - pkg: php-apc
+    - watch_in:
+      - service: apache2
+
 # Setup memcached module for php5
 php5-memcached:
   pkg:

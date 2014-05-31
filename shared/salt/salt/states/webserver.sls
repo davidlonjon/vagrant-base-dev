@@ -1,5 +1,4 @@
 include:
-  - states.caches.apc
   - states.caches.memcached
   - states.caches.redis
   - states.dbs.mysql.mysqlclient
