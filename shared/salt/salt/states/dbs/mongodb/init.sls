@@ -49,9 +49,9 @@ set_mongodb_logs_directory:
     - template: jinja
     - mode: 644
     - defaults:
-       bind_ip: {{ '127.0.0.1'  if pillar['mongodb']['bind_ip'] is not defined else pillar['mongodb']['bind_ip'] }}
-       port: {{ '27017'  if pillar['mongodb']['port'] is not defined else pillar['mongodb']['port'] }}
-       logs_base_dir: {{ '/var/log/mongodb'  if pillar['mongodb']['logs_base_dir'] is not defined else pillar['mongodb']['logs_base_dir'] }}
+       bind_ip: {{ '127.0.0.1' if pillar['mongodb']['bind_ip'] is not defined else pillar['mongodb']['bind_ip'] }}
+       port: {{ '27017' if pillar['mongodb']['port'] is not defined else pillar['mongodb']['port'] }}
+       logs_base_dir: {{ '/var/log/mongodb' if pillar['mongodb']['logs_base_dir'] is not defined else pillar['mongodb']['logs_base_dir'] }}
     - require:
       - pkg: mongodb
     - watch_in:
