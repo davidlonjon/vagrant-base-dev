@@ -42,8 +42,8 @@ set_mongodb_logs_directory:
 /etc/mongodb.conf:
   file:
     - managed
-    - source: salt://states/dbs/mongodb/etc/mongodb.conf
     - name: /etc/mongod.conf
+    - source: salt://states/dbs/mongodb/etc/mongodb.conf
     - user: root
     - group: root
     - template: jinja
