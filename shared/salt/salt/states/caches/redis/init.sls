@@ -2,7 +2,7 @@
 
 # Add redis package repository
 redis_pkgrepo:
-    pkgrepo:
+  pkgrepo:
     - managed
     - ppa: chris-lea/redis-server
     - require_in:
