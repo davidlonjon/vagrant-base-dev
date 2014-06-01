@@ -8,6 +8,7 @@ dump.rdb
 
 # Ignore vagrant files
 /.vagrant
+*.box
 
 # Ignore sublime project files
 sublime
