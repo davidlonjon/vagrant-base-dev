@@ -1,10 +1,9 @@
 include:
-  - states.caches.apc
   - states.caches.memcached
   - states.caches.redis
   - states.dbs.mysql.mysqlclient
   - states.lang.php5
-  - states.lang.rails
+  - states.lang.ruby_on_rails
   - states.lang.go
   - states.setup
   - states.tools.capistrano

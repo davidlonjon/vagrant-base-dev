@@ -1,6 +1,7 @@
-# Install sqlite3 (http://www.sqlite.org/)
+# Provision sqlite3 (http://www.sqlite.org/)
 
-setup_sqlite3:
+# Install sqlite3 and dependencies from package
+sqlite3:
   pkg:
     - installed
     - pkgs:

@@ -7,7 +7,7 @@ install_composer:
         - cwd: /home/vagrant
         - unless: test -e /usr/local/bin/composer
         - require:
-            - pkg: setup_php5
+            - pkg: php5
             - pkg: curl
 
 mv_composer:

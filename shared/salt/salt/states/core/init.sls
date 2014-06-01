@@ -1,7 +1,7 @@
 include:
   - states.core.locale
   - states.core.pkgs.ack_grep
-  - states.core.pkgs.build-essential
+  - states.core.pkgs.build_essential
   - states.core.pkgs.curl
   # - states.core.pkgs.docker
   - states.core.pkgs.git
@@ -14,13 +14,12 @@ include:
   - states.core.pkgs.nodejs
   # - states.core.pkgs.npm
   - states.core.pkgs.perl
-  - states.core.pkgs.perllibs
   - states.core.pkgs.pip
   - states.core.pkgs.python
   - states.core.pkgs.ruby
   - states.core.pkgs.rvm
   - states.core.pkgs.screen
-  - states.core.pkgs.svn
+  - states.core.pkgs.subversion
   - states.core.pkgs.tig
   - states.core.pkgs.tmux
   - states.core.pkgs.tree

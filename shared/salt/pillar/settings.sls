@@ -25,26 +25,38 @@ postgresql:
 nginx:
   port: 8080
 
+# Configuration for /etc/php5/apache2/php.ini file
 php:
-  php_upload_max_filesize: '200M'
+  max_execution_time: 60
+  memory_limit: '256M'
+  error_reporting: 'E_ALL'
+  display_errors: 'On'
+  display_startup_errors: 'On'
+  track_errors: 'On'
+  upload_max_filesize: '500M'
 
+# Configuration for /etc/php5/conf.d/apc.ini file
+apc:
+  shm_size: '64M'
+
+# Configuration for /etc/memcached.conf file
 memcached:
   memory: 128
   host: '127.0.0.1'
   port: 11211
+  logs_base_dir: '/srv/logs/memcached'
 
+# Configuration for /etc/redis/redis.conf file
 redis:
-  host: '127.0.0.1'
+  bind: '127.0.0.1'
   port: 6379
-  logs_dir: '/srv/logs/redis'
+  logs_base_dir: '/srv/logs/redis'
 
 mongodb:
   bind_ip: '127.0.0.1'
   port: 27017
   logs_base_dir: '/srv/logs/mongodb'
 
-apc:
-  memory: 64
 
 #Timezone settings for Webgrind
 timezone: 'Asia/Seoul'

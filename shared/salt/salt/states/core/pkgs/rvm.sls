@@ -1,3 +1,6 @@
+# Provision rvm (https://rvm.io/)
+
+# Install rvm package dependencies
 rvm-deps:
   pkg.installed:
     - names:
@@ -11,6 +14,7 @@ rvm-deps:
       - git-core
       - subversion
 
+# Install rvm from script
 rvm:
   cmd:
     - run
@@ -22,15 +26,11 @@ rvm:
     - require:
         - pkg: rvm-deps
 
+# Source rvm
 source_rvm:
-    cmd:
-        - run
-        - name: 'source /home/vagrant/.rvm/scripts/rvm'
-        - cwd: /home/vagrant
-        - require:
-            - cmd: rvm
-
-# This is not needed as ruby 1.9.3 is already installed on Ubuntu 14.04
-# ruby:
-#   pkg.installed:
-#     - name: ruby1.9.3
+  cmd:
+    - run
+    - name: 'source /home/vagrant/.rvm/scripts/rvm'
+    - cwd: /home/vagrant
+    - require:
+        - cmd: rvm
