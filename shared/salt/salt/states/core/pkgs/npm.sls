@@ -1,12 +1,10 @@
-# Note NPM is installed with nodejs
+# Provision npm (https://www.npmjs.org/)
+# DL: No need to install as npm is installed with nodejs
 
+# # Add npm package repository
 # npm:
-#     pkgrepo:
-#     - managed
-#     - ppa: chris-lea/node.js
-#     - require_in:
-#         - pkg: npm
-#     pkg:
-#         - installed
-#         - require:
-#           - pkg: nodejs
+#   pkg:
+#     - latest
+#     - require:
+#       - pkg: nodejs
+#       - pkgrepo: nodejs_pkgrepo
