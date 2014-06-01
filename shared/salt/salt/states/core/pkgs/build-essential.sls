@@ -1,4 +1,4 @@
-# Provision build-essential (http://packages.ubuntu.com/lucid/build-essential)
+# Provision build-essential (http://packages.ubuntu.com/precise/build-essential)
 
 # Install build-essential from package
 build-essential:
