@@ -22,10 +22,10 @@ memcached:
     - template: jinja
     - mode: 644
     - defaults:
-       memory: {{ '64'  if pillar['memcached']['memory'] is not defined else pillar['memcached']['memory'] }}
-       host: {{ '127.0.0.1'  if pillar['memcached']['host'] is not defined else pillar['memcached']['host'] }}
-       port: {{ '11211'  if pillar['memcached']['port'] is not defined else pillar['memcached']['port'] }}
-       logs_base_dir: {{ '/var/log'  if pillar['memcached']['logs_base_dir'] is not defined else pillar['memcached']['logs_base_dir'] }}
+       memory: {{ '64' if pillar['memcached']['memory'] is not defined else pillar['memcached']['memory'] }}
+       host: {{ '127.0.0.1' if pillar['memcached']['host'] is not defined else pillar['memcached']['host'] }}
+       port: {{ '11211' if pillar['memcached']['port'] is not defined else pillar['memcached']['port'] }}
+       logs_base_dir: {{ '/var/log' if pillar['memcached']['logs_base_dir'] is not defined else pillar['memcached']['logs_base_dir'] }}
     - require:
       - pkg: memcached
     - watch_in:
