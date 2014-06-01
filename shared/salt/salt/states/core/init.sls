@@ -19,7 +19,7 @@ include:
   - states.core.pkgs.ruby
   - states.core.pkgs.rvm
   - states.core.pkgs.screen
-  - states.core.pkgs.svn
+  - states.core.pkgs.subversion
   - states.core.pkgs.tig
   - states.core.pkgs.tmux
   - states.core.pkgs.tree
