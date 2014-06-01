@@ -30,9 +30,9 @@ redis-server:
     - template: jinja
     - mode: 644
     - defaults:
-       bind: {{ '127.0.0.1'  if pillar['redis']['bind'] is not defined else pillar['redis']['bind'] }}
-       port: {{ '6376'  if pillar['redis']['port'] is not defined else pillar['redis']['port'] }}
-       logs_base_dir: {{ '/var/log/redis'  if pillar['redis']['logs_base_dir'] is not defined else pillar['redis']['logs_base_dir'] }}
+       bind: {{ '127.0.0.1' if pillar['redis']['bind'] is not defined else pillar['redis']['bind'] }}
+       port: {{ '6376' if pillar['redis']['port'] is not defined else pillar['redis']['port'] }}
+       logs_base_dir: {{ '/var/log/redis' if pillar['redis']['logs_base_dir'] is not defined else pillar['redis']['logs_base_dir'] }}
     - require:
       - pkg: redis-server
     - watch_in:
