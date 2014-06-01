@@ -5,5 +5,5 @@ mytop:
   pkg:
     - installed
     - require:
-      - pgk: perl
-      - pgk: mysql-server
+      - pkg: perl
+      - pkg: mysql-server
