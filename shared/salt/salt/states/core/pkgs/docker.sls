@@ -1,4 +1,5 @@
 # Provision docker (https://www.docker.io/)
+# DL: Somehow this is not working on ubuntu precise 64
 
 # Install docker from package
 docker.io:
