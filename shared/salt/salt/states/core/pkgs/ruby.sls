@@ -3,5 +3,5 @@
 # Install ruby from package
 ruby:
   pkg:
-    - installed:
+    - installed
     - name: ruby1.9.3
