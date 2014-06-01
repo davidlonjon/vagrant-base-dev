@@ -3,7 +3,7 @@ phpmyadmin:
     - installed
     - name: phpmyadmin
     - require:
-      - pkg: setup_php5
+      - pkg: php5
       - pkg: apache2
 
 phpmyadmin_apache:

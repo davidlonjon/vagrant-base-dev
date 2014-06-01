@@ -3,7 +3,7 @@ phppgadmin:
     - installed
     - name: phppgadmin
     - require:
-      - pkg: setup_php5
+      - pkg: php5
       - pkg: apache2
 
 set_phppgadmin_vhost_file:
