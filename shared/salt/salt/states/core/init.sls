@@ -14,7 +14,6 @@ include:
   - states.core.pkgs.nodejs
   # - states.core.pkgs.npm
   - states.core.pkgs.perl
-  - states.core.pkgs.perllibs
   - states.core.pkgs.pip
   - states.core.pkgs.python
   - states.core.pkgs.ruby
