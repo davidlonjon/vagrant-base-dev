@@ -32,12 +32,6 @@ forwards:
     postgresql:
     from: 5432
     to: 5432
-  xdebug:
-    from: 9000
-    to: 9000
-  livereload:
-    from: 35729
-    to: 35729
   memcached:
     from: 11211
     to: 11211
