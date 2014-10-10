@@ -32,12 +32,15 @@ forwards:
     postgresql:
     from: 5432
     to: 5432
+  # If updating this, please also update the memcached port config in the salt_settings.yml
   memcached:
     from: 11211
     to: 11211
+  # If updating this, please also update the redis port config in the salt_settings.yml
   redis:
     from: 6379
     to: 6379
+  # If updating this, please also update the mongodb port config in the salt_settings.yml
   mongodb:
     from: 27017
     to: 27017
