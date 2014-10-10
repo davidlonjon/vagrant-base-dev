@@ -7,10 +7,10 @@ forwards:
   http:
     from: 80
     to: 8080
-  # If updating this, please a
+  # If updating this, please also update the nginx port config in the salt_settings.yml
   nginx:
-    from: 8080
-    to: 8080
+    from: 8181
+    to: 8181
   jekyll:
     from: 4000
     to: 4000
