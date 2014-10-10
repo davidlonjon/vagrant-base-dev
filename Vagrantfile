@@ -82,12 +82,6 @@ Vagrant.configure('2') do |config|
     # them into the VM.
     vm_config.ssh.forward_agent = settings[:forward_agent]
 
-    # Use the hostupdater plugin to set aliases on host machine
-    if Vagrant.has_plugin?('vagrant-hostsupdater') and settings[:use_hostupdater]
-      config.hostsupdater.aliases = settings[:hostupdater_aliases].split(',')
-      config.hostsupdater.remove_on_suspend = settings[:hostupdater_remove_on_suspend]
-    end
-
     # Use vagrant cashier plugin to maximize caching
     if Vagrant.has_plugin?('vagrant-cachier') and settings[:use_cashier]
       # Configure cached packages to be shared between instances of the same base box.

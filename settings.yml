@@ -6,7 +6,8 @@ forward_agent: true
 forwards:
   http:
     from: 80
-    to: 80
+    to: 8080
+  # If updating this, please a
   nginx:
     from: 8080
     to: 8080
@@ -55,9 +56,6 @@ share_folders:
     guest_path: '/srv'
     create: true
     type: 'nfs'
-use_hostupdater: false
-hostupdater_aliases: 'www.local.dev,tools.local.dev,mysql.local.dev,phpmyadmin.local.dev,phppgadmin.local.dev'
-hostupdater_remove_on_suspend: true
 use_cashier: false
 use_salt_provisioner: true
 salt_verbose: true
