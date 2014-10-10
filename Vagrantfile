@@ -38,7 +38,7 @@ if File.exists?(File.join(vagrant_dir, 'settings.yml'))
   settings = YAML::load_file 'settings.yml'
   settings = symbolize_keys(settings)
 else
-  # Set default fallback settings settings
+  # Exit with error message if the salt_settings.yml file does not exists
   abort "settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
 
