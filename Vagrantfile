@@ -39,7 +39,7 @@ if File.exists?(File.join(vagrant_dir, 'settings/settings.yml'))
   settings = symbolize_keys(settings)
 else
   # Exit with error message if the salt_settings.yml file does not exists
-  abort "settings.yml file is missing. Please make sure it exists with the correct syntax"
+  abort "settings/settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
 
 if File.exists?(File.join(vagrant_dir, 'settings/salt_settings.yml'))
@@ -51,7 +51,7 @@ if File.exists?(File.join(vagrant_dir, 'settings/salt_settings.yml'))
   end
 else
   # Exit with error message if the salt_settings.yml file does not exists
-  abort "salt_settings.yml file is missing. Please make sure it exists with the correct syntax"
+  abort "settings/salt_settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
 puts 'completed'
 exit
