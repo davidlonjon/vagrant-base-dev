@@ -37,22 +37,26 @@ vagrant_dir = File.expand_path(File.dirname(__FILE__))
 if File.exists?(File.join(vagrant_dir, 'settings.yml'))
   settings = YAML::load_file 'settings.yml'
   settings = symbolize_keys(settings)
-
-  # Create the settings file to be used by Salt
-  source_lines = IO.readlines('settings.yml')
-  start_line = source_lines.index{ |line| line =~ /# SETTINGS FOR SALT - DO NOT DELETE THIS LINE/ } + 1
-  salt_pillar_settings = source_lines[ start_line..-1 ].join( "" )
-
-  # Set pillar settings file
-  File.open(File.join(vagrant_dir, 'shared/salt/pillar/settings.sls'), 'w+' ) do |f|
-    f << salt_pillar_settings
-  end
 else
   # Set default fallback settings settings
   abort "settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
 
+if File.exists?(File.join(vagrant_dir, 'salt_settings.yml'))
+  salt_settings = YAML::load_file 'salt_settings.yml'
+  salt_settings = symbolize_keys(salt_settings)
+   source_lines = IO.readlines('salt_settings.yml')
 
+  # Set pillar settings file
+  File.open(File.join(vagrant_dir, 'shared/salt/pillar/settings.sls'), 'w+' ) do |f|
+    f << source_lines.join( "" )
+  end
+else
+  # Exit with error message if the salt_settings.yml file does not exists
+  abort "salt_settings.yml file is missing. Please make sure it exists with the correct syntax"
+end
+puts 'completed'
+exit
 # Create the settings file to be used by Salt
 Vagrant.configure('2') do |config|
   # Store the current version of Vagrant for use in conditionals when dealing
