@@ -27,102 +27,6 @@ def symbolize_keys(hash)
   }
 end
 
-# Set default fallback settings
-def set_default_fallback_settings()
-  default_settings = Hash.new
-  default_settings[:vm_name] = 'dev'
-  default_settings[:box_name] = 'trusty-server-cloudimg-i386-vagrant-disk1'
-  default_settings[:box_url] = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box'
-  default_settings[:ip] = '10.10.10.100'
-  default_settings[:hostname] = 'local.dev'
-  default_settings[:forward_agent] = true
-  default_settings[:forwards] = Hash.new
-  default_settings[:forwards][:http] = Hash.new
-  default_settings[:forwards][:http][:from] = 80
-  default_settings[:forwards][:http][:to] = 80
-  default_settings[:forwards][:nginx] = Hash.new
-  default_settings[:forwards][:nginx][:from] = 8080
-  default_settings[:forwards][:nginx][:to] = 8080
-  default_settings[:forwards][:api] = Hash.new
-  default_settings[:forwards][:api][:from] =9090
-  default_settings[:forwards][:api][:to] = 9090
-  default_settings[:forwards][:mysql] = Hash.new
-  default_settings[:forwards][:mysql][:from] = 3306
-  default_settings[:forwards][:mysql][:to] = 3306
-  default_settings[:forwards][:xdebug] = Hash.new
-  default_settings[:forwards][:xdebug][:from] = 9000
-  default_settings[:forwards][:xdebug][:to] = 9000
-  default_settings[:forwards][:livereload] = Hash.new
-  default_settings[:forwards][:livereload][:from] = 35729
-  default_settings[:forwards][:livereload][:to] = 35729
-  default_settings[:forwards][:memcached] = Hash.new
-  default_settings[:forwards][:memcached][:from] = 12111
-  default_settings[:forwards][:memcached][:to] = 12111
-  default_settings[:share_folders] = Hash.new
-  default_settings[:share_folders][:shared] = Hash.new
-  default_settings[:share_folders][:shared][:host_path] = 'shared/'
-  default_settings[:share_folders][:shared][:guest_path] = '/srv/'
-  default_settings[:share_folders][:shared][:create] = true
-  default_settings[:share_folders][:shared][:type] = 'nfs'
-  default_settings[:use_hostupdater] = false
-  default_settings[:hostupdater_aliases] = 'www.local.dev,tools.local.dev,mysql.local.dev,phpmyadmin.local.dev'
-  default_settings[:hostupdater_remove_on_suspend] = true
-  default_settings[:use_cashier] = false
-  default_settings[:use_salt_provisioner] = true
-  default_settings[:salt_verbose] = true
-  default_settings[:salt_update] = 'stable'
-  default_settings[:timezone_default_settings] = 'Asia/Seoul'
-  default_settings[:locales] = Hash.new
-  default_settings[:locales][:en] = Hash.new
-  default_settings[:locales][:en][:locale] = 'en_US.UTF-8'
-  default_settings[:locales][:gb] = Hash.new
-  default_settings[:locales][:gb][:locale] = 'en_GB.UTF-8'
-  default_settings[:locales][:ko] = Hash.new
-  default_settings[:locales][:ko][:locale] = 'ko_KR.UTF-8'
-
-  return default_settings
-end
-
-# Set default fallback settings for the salt pillar settings file
-def set_fallback_default_salt_pillar_settings(settings)
-  salt_settings_file_content = "phpmyadmin:
-  server_name: 'phpmyadmin." + settings[:hostname]+ "'
-  server_admin: 'admin@" + settings[:hostname]+ "'
-  allow_from: '" + settings[:ip][ 0..settings[:ip].rindex(/\./)] +  "0/24'
-  logs_dir: '" + settings[:share_folders][:logs][:guest_path] + "/apache2/phpmyadmin'
-
-# tools_vhost:
-#   server_name: 'tools.local.dev'
-#   doc_root:  '" + settings[:share_folders][:www][:guest_path] + "/tools.local.dev'
-#   server_admin: 'admin." + settings[:hostname]+ "'
-#   allow_override: 'All'
-#   allow_from: 'all'
-#   allow_status: 'granted'
-#   logs_dir: '" + settings[:share_folders][:logs][:guest_path] + "/apache2/tools.local.dev'
-
-mysql_server:
-  root_username: 'root'
-  root_password: 'root'
-  bind_address: '127.0.0.1'
-  version: '5.5'
-
-php:
-  php_upload_max_filesize: '200M'
-
-memcached:
-  memory: 128
-  host: '127.0.0.1'
-  port: " + settings[:forwards][:memcached][:from].to_s + "
-
-apc:
-  memory: 64
-
-#Timezone settings for Webgrind
-timezone: '" + settings[:timezone_default_settings] + "'"
-
-  return salt_settings_file_content
-end
-
 # Get the current directory
 dir = Dir.pwd
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
@@ -130,23 +34,24 @@ vagrant_dir = File.expand_path(File.dirname(__FILE__))
 # Read the settings from the settings file if it exists
 # The idea is from:
 # http://stackoverflow.com/questions/3903376/how-do-i-save-settings-as-a-hash-in-a-external-file
-if File.exists?(File.join(vagrant_dir, 'settings.yml'))
-  settings = YAML::load_file 'settings.yml'
+if File.exists?(File.join(vagrant_dir, 'settings/settings.yml'))
+  settings = YAML::load_file 'settings/settings.yml'
   settings = symbolize_keys(settings)
-
-  # Create the settings file to be used by Salt
-  source_lines = IO.readlines('settings.yml')
-  start_line = source_lines.index{ |line| line =~ /# SETTINGS FOR SALT - DO NOT DELETE THIS LINE/ } + 1
-  salt_pillar_settings = source_lines[ start_line..-1 ].join( "" )
 else
-  # Set default fallback settings settings
-  settings = set_default_fallback_settings()
-  salt_pillar_settings = set_fallback_default_salt_pillar_settings(settings)
+  # Exit with error message if the salt_settings.yml file does not exists
+  abort "settings/settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
 
-# Set pillar settings file
-File.open(File.join(vagrant_dir, 'shared/salt/pillar/settings.sls'), 'w+' ) do |f|
-  f << salt_pillar_settings
+if File.exists?(File.join(vagrant_dir, 'settings/salt_settings.yml'))
+   source_lines = IO.readlines('settings/salt_settings.yml')
+
+  # Set pillar settings file
+  File.open(File.join(vagrant_dir, 'shared/salt/pillar/settings.sls'), 'w+' ) do |f|
+    f << source_lines.join( "" )
+  end
+else
+  # Exit with error message if the salt_settings.yml file does not exists
+  abort "settings/salt_settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
 
 # Create the settings file to be used by Salt
@@ -173,12 +78,6 @@ Vagrant.configure('2') do |config|
     # use SSH private keys that are present on the host without copying
     # them into the VM.
     vm_config.ssh.forward_agent = settings[:forward_agent]
-
-    # Use the hostupdater plugin to set aliases on host machine
-    if Vagrant.has_plugin?('vagrant-hostsupdater') and settings[:use_hostupdater]
-      config.hostsupdater.aliases = settings[:hostupdater_aliases].split(',')
-      config.hostsupdater.remove_on_suspend = settings[:hostupdater_remove_on_suspend]
-    end
 
     # Use vagrant cashier plugin to maximize caching
     if Vagrant.has_plugin?('vagrant-cachier') and settings[:use_cashier]

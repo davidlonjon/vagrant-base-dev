@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+
+    ServerAdmin {{ server_admin }}
+
+    DocumentRoot /usr/share/phppgadmin
+    ServerName {{ server_name }}
+
+     <Directory /usr/share/phppgadmin/>
+
+        Options Indexes FollowSymLinks
+            AllowOverride None
+            deny from all
+            allow from localhost
+             #allow access via your IP
+            allow from {{ allow_from }}
+    </Directory>
+
+        ErrorLog {{ logs_dir }}/phppgadmin-error.log
+        LogLevel warn
+        CustomLog {{ logs_dir }}/phppgadmin-access.log combined
+</VirtualHost>

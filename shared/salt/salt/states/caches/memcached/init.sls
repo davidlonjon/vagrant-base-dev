@@ -1,58 +1,32 @@
-include:
-  - states.www.apache2
+# Provision memcached (http://memcached.org/)
 
+# Install memcached from package and setup service
 memcached:
   pkg:
     - installed
+    - name: memcached
+  service:
+    - running
+    - name: memcached
   require:
     - pkg: build-essential
-  service:
-    - name: memcached
-    - running
-    - require:
-      - pkg: memcached
-    - watch:
-      - file: memcached.ini
-      - file: memcached.conf
 
-memcached.conf:
+# Setup /etc/memcached.conf file
+/etc/memcached.conf:
   file:
     - managed
-    - source: salt://states/caches/memcached/etc/memcached.conf
     - name: /etc/memcached.conf
+    - source: salt://states/caches/memcached/etc/memcached.conf
     - user: root
     - group: root
     - template: jinja
     - mode: 644
     - defaults:
-       memory: {{ "64"  if pillar['memcached']['memory'] is not defined else pillar['memcached']['memory'] }}
-       host: {{ "127.0.0.1"  if pillar['memcached']['host'] is not defined else pillar['memcached']['host'] }}
-       port: {{ "11211"  if pillar['memcached']['port'] is not defined else pillar['memcached']['port'] }}
+       memory: {{ '64' if pillar['memcached']['memory'] is not defined else pillar['memcached']['memory'] }}
+       host: {{ '127.0.0.1' if pillar['memcached']['host'] is not defined else pillar['memcached']['host'] }}
+       port: {{ '11211' if pillar['memcached']['port'] is not defined else pillar['memcached']['port'] }}
+       logs_base_dir: {{ '/var/log' if pillar['memcached']['logs_base_dir'] is not defined else pillar['memcached']['logs_base_dir'] }}
     - require:
       - pkg: memcached
-
-php5-memcached:
-  pkg:
-    - installed
-  require:
-    - pkg: memcached
-
-memcached.ini:
-  file:
-    - managed
-    - source: salt://states/caches/memcached/etc/php5/conf.d/memcached.ini
-    - name: /etc/php5/conf.d/memcached.ini
-    - user: root
-    - group: root
-    - template: jinja
-    - mode: 644
-    - require:
-      - pkg: memcached
-      - pkg: php5-memcached
-
-extend:
-  apache2:
-    service:
-      - running
-      - watch:
-        - file: memcached.ini
+    - watch_in:
+      - service: memcached

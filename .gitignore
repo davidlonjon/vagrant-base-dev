@@ -8,6 +8,7 @@ dump.rdb
 
 # Ignore vagrant files
 /.vagrant
+*.box
 
 # Ignore sublime project files
 sublime
@@ -29,3 +30,9 @@ shared/logs/*
 # Ignore config files
 shared/config/*
 !shared/config/README.md
+
+# Ignore settings directory
+settings/*.yml
+
+# Ignore the salt pillar settings file
+shared/salt/pillar/settings.sls
