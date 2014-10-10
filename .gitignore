@@ -30,3 +30,6 @@ shared/logs/*
 # Ignore config files
 shared/config/*
 !shared/config/README.md
+
+# Ignore settings directory
+settings/*

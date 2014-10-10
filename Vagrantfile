@@ -34,18 +34,18 @@ vagrant_dir = File.expand_path(File.dirname(__FILE__))
 # Read the settings from the settings file if it exists
 # The idea is from:
 # http://stackoverflow.com/questions/3903376/how-do-i-save-settings-as-a-hash-in-a-external-file
-if File.exists?(File.join(vagrant_dir, 'settings.yml'))
-  settings = YAML::load_file 'settings.yml'
+if File.exists?(File.join(vagrant_dir, 'settings/settings.yml'))
+  settings = YAML::load_file 'settings/settings.yml'
   settings = symbolize_keys(settings)
 else
   # Exit with error message if the salt_settings.yml file does not exists
   abort "settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
 
-if File.exists?(File.join(vagrant_dir, 'salt_settings.yml'))
-  salt_settings = YAML::load_file 'salt_settings.yml'
+if File.exists?(File.join(vagrant_dir, 'settings/salt_settings.yml'))
+  salt_settings = YAML::load_file 'settings/salt_settings.yml'
   salt_settings = symbolize_keys(salt_settings)
-   source_lines = IO.readlines('salt_settings.yml')
+   source_lines = IO.readlines('settings/salt_settings.yml')
 
   # Set pillar settings file
   File.open(File.join(vagrant_dir, 'shared/salt/pillar/settings.sls'), 'w+' ) do |f|
