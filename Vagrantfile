@@ -53,8 +53,7 @@ else
   # Exit with error message if the salt_settings.yml file does not exists
   abort "settings/salt_settings.yml file is missing. Please make sure it exists with the correct syntax"
 end
-puts 'completed'
-exit
+
 # Create the settings file to be used by Salt
 Vagrant.configure('2') do |config|
   # Store the current version of Vagrant for use in conditionals when dealing
