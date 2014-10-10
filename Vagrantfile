@@ -43,8 +43,6 @@ else
 end
 
 if File.exists?(File.join(vagrant_dir, 'settings/salt_settings.yml'))
-  salt_settings = YAML::load_file 'settings/salt_settings.yml'
-  salt_settings = symbolize_keys(salt_settings)
    source_lines = IO.readlines('settings/salt_settings.yml')
 
   # Set pillar settings file
