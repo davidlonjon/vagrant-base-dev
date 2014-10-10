@@ -27,146 +27,6 @@ def symbolize_keys(hash)
   }
 end
 
-# Set default fallback settings
-def set_default_fallback_settings()
-  default_settings = Hash.new
-  default_settings[:vm_name] = 'dev'
-  default_settings[:box_name] = 'trusty-server-cloudimg-i386-vagrant-disk1'
-  default_settings[:box_url] = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box'
-  default_settings[:ip] = '10.10.10.100'
-  default_settings[:forward_agent] = true
-  default_settings[:forwards] = Hash.new
-  default_settings[:forwards][:http] = Hash.new
-  default_settings[:forwards][:http][:from] = 80
-  default_settings[:forwards][:http][:to] = 80
-  default_settings[:forwards][:nginx] = Hash.new
-  default_settings[:forwards][:nginx][:from] = 8080
-  default_settings[:forwards][:nginx][:to] = 8080
-  default_settings[:forwards][:jekyll] = Hash.new
-  default_settings[:forwards][:jekyll][:from] =4000
-  default_settings[:forwards][:jekyll][:to] = 4000
-  default_settings[:forwards][:middleman] = Hash.new
-  default_settings[:forwards][:middleman][:from] =4567
-  default_settings[:forwards][:middleman][:to] = 4567
-  default_settings[:forwards][:redmon] = Hash.new
-  default_settings[:forwards][:redmon][:from] =4568
-  default_settings[:forwards][:redmon][:to] = 4568
-  default_settings[:forwards][:expressjs] = Hash.new
-  default_settings[:forwards][:expressjs][:from] =3000
-  default_settings[:forwards][:expressjs][:to] = 3000
-  default_settings[:forwards][:api] = Hash.new
-  default_settings[:forwards][:api][:from] =9090
-  default_settings[:forwards][:api][:to] = 9090
-  default_settings[:forwards][:mysql] = Hash.new
-  default_settings[:forwards][:mysql][:from] = 3306
-  default_settings[:forwards][:mysql][:to] = 3306
-  default_settings[:forwards][:postgresql] = Hash.new
-  default_settings[:forwards][:postgresql][:from] = 5432
-  default_settings[:forwards][:postgresql][:to] = 5432
-  default_settings[:forwards][:xdebug] = Hash.new
-  default_settings[:forwards][:xdebug][:from] = 9000
-  default_settings[:forwards][:xdebug][:to] = 9000
-  default_settings[:forwards][:livereload] = Hash.new
-  default_settings[:forwards][:livereload][:from] = 35729
-  default_settings[:forwards][:livereload][:to] = 35729
-  default_settings[:forwards][:memcached] = Hash.new
-  default_settings[:forwards][:memcached][:from] = 12111
-  default_settings[:forwards][:memcached][:to] = 12111
-  default_settings[:forwards][:redis] = Hash.new
-  default_settings[:forwards][:redis][:from] = 6379
-  default_settings[:forwards][:redis][:to] = 6379
-  default_settings[:forwards][:mongodb] = Hash.new
-  default_settings[:forwards][:mongodb][:from] = 27017
-  default_settings[:forwards][:mongodb][:to] = 27017
-  default_settings[:forwards][:mongodb_web_status] = Hash.new
-  default_settings[:forwards][:mongodb_web_status][:from] = 28017
-  default_settings[:forwards][:mongodb_web_status][:to] = 28017
-  default_settings[:share_folders] = Hash.new
-  default_settings[:share_folders][:shared] = Hash.new
-  default_settings[:share_folders][:shared][:host_path] = 'shared/'
-  default_settings[:share_folders][:shared][:guest_path] = '/srv/'
-  default_settings[:share_folders][:shared][:create] = true
-  default_settings[:share_folders][:shared][:type] = 'nfs'
-  default_settings[:use_hostupdater] = false
-  default_settings[:hostupdater_aliases] = 'www.local.dev,tools.local.dev,mysql.local.dev,phpmyadmin.local.dev,phppgadmin.local.dev'
-  default_settings[:hostupdater_remove_on_suspend] = true
-  default_settings[:use_cashier] = false
-  default_settings[:use_salt_provisioner] = true
-  default_settings[:salt_verbose] = true
-  default_settings[:salt_update] = 'stable'
-  default_settings[:timezone_default_settings] = 'Asia/Seoul'
-  default_settings[:locales] = Hash.new
-  default_settings[:locales][:en] = Hash.new
-  default_settings[:locales][:en][:locale] = 'en_US.UTF-8'
-  default_settings[:locales][:gb] = Hash.new
-  default_settings[:locales][:gb][:locale] = 'en_GB.UTF-8'
-  default_settings[:locales][:ko] = Hash.new
-  default_settings[:locales][:ko][:locale] = 'ko_KR.UTF-8'
-
-  return default_settings
-end
-
-# Set default fallback settings for the salt pillar settings file
-def set_fallback_default_salt_pillar_settings(settings)
-  salt_settings_file_content = "phpmyadmin:
-  server_name: 'phpmyadmin." + settings[:hostname]+ "'
-  server_admin: 'admin@" + settings[:hostname]+ "'
-  allow_from: '" + settings[:ip][ 0..settings[:ip].rindex(/\./)] +  "0/24'
-  logs_dir: '" + settings[:share_folders][:logs][:guest_path] + "/apache2/phpmyadmin'
-
-mysql_server:
-  root_username: 'root'
-  root_password: 'root'
-  bind_address: '127.0.0.1'
-  version: '5.5'
-
-postgresql:
-  root_username: 'root'
-  root_password: 'root'
-  test_db_name: 'test'
-  bind_address: '10.10.10.0/24'
-
-nginx:
-  port: 8080
-
-# Configuration for /etc/php5/apache2/php.ini file
-php:
-  max_execution_time: 60
-  memory_limit: '256M'
-  error_reporting: 'E_ALL'
-  display_errors: 'On'
-  display_startup_errors: 'On'
-  track_errors: 'On'
-  upload_max_filesize: '500M'
-
-# Configuration for /etc/php5/conf.d/apc.ini file
-apc:
-  shm_size: '64M'
-
-# Configuration for /etc/memcached.conf file
-memcached:
-  memory: 128
-  host: '127.0.0.1'
-  port: " + settings[:forwards][:memcached][:from].to_s + "
-  logs_base_dir: '/srv/logs/memcached'
-
-# Configuration for /etc/redis/redis.conf file
-redis:
-  bind: '127.0.0.1'
-  port: " + settings[:forwards][:redis][:from].to_s + "
-  logs_base_dir: '/srv/logs/redis'
-
-mongodb:
-  bind_ip: '127.0.0.1'
-  port: 27017
-  logs_base_dir: '/srv/logs/mongodb'
-
-#Timezone settings for Webgrind
-timezone: '" + settings[:timezone_default_settings] + "'"
-
-  return salt_settings_file_content
-end
-
 # Get the current directory
 dir = Dir.pwd
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
@@ -174,7 +34,7 @@ vagrant_dir = File.expand_path(File.dirname(__FILE__))
 # Read the settings from the settings file if it exists
 # The idea is from:
 # http://stackoverflow.com/questions/3903376/how-do-i-save-settings-as-a-hash-in-a-external-file
-if File.exists?(File.join(vagrant_dir, 'settings.yml'))
+if File.exists?(File.join(vagrant_dir, 'settings1.yml'))
   settings = YAML::load_file 'settings.yml'
   settings = symbolize_keys(settings)
 
@@ -184,8 +44,8 @@ if File.exists?(File.join(vagrant_dir, 'settings.yml'))
   salt_pillar_settings = source_lines[ start_line..-1 ].join( "" )
 else
   # Set default fallback settings settings
-  settings = set_default_fallback_settings()
-  salt_pillar_settings = set_fallback_default_salt_pillar_settings(settings)
+  abort "settings.yml file is missing. Please make sure it exists with the correct syntax"
+  exit
 end
 
 # Set pillar settings file
