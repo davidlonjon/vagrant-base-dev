@@ -23,7 +23,7 @@ postgresql:
   bind_address: '10.10.10.0/24'
 
 nginx:
-  port: 8080
+  port: 8181
 
 # Configuration for /etc/php5/apache2/php.ini file
 php:
@@ -56,7 +56,6 @@ mongodb:
   bind_ip: '127.0.0.1'
   port: 27017
   logs_base_dir: '/srv/logs/mongodb'
-
 
 #Timezone settings for Webgrind
 timezone: 'Asia/Seoul'
