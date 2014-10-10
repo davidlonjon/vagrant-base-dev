@@ -33,3 +33,6 @@ shared/config/*
 
 # Ignore settings directory
 settings/*.yml
+
+# Ignore the salt pillar settings file
+shared/salt/pillar/settings.sls
